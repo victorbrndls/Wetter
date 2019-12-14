@@ -4,10 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.harystolho.wetter.core.domain.City
+import com.harystolho.wetter.core.repository.CityRepository
+import com.harystolho.wetter.util.DefaultSingleObserver
 import com.harystolho.wetter.util.Event
 import com.harystolho.wetter.util.extension.mutableLiveData
+import com.harystolho.wetter.util.extension.observe
+import io.reactivex.SingleObserver
+import io.reactivex.disposables.Disposable
 
-class SearchCityViewModel : ViewModel() {
+class SearchCityViewModel(private val cityRepository: CityRepository) : ViewModel() {
 
     private val _cities = MutableLiveData<List<City>>()
 
@@ -16,12 +21,15 @@ class SearchCityViewModel : ViewModel() {
     val isError = mutableLiveData(Event(false))
 
     fun loadCities() {
-        _cities.value = listOf(
-            City(1, "CL", "Parana"),
-            City(2, "CWB", "Parana"),
-            City(3, "SP", "Sao Paulo"),
-            City(4, "RJ", "Rio de Janeiro")
-        )
+        cityRepository.getCities().observe(object : DefaultSingleObserver<List<City>>() {
+            override fun onSuccess(t: List<City>) {
+                _cities.value = t
+            }
+
+            override fun onError(e: Throwable) {
+                isError.value = Event(true)
+            }
+        })
     }
 
 

@@ -11,5 +11,5 @@ val wetterInject = module {
 
     single<CityRepository> { JsonCityRepositoryImpl(androidContext()) }
 
-    viewModel { SearchCityViewModel() }
+    viewModel { SearchCityViewModel(get()) }
 }
