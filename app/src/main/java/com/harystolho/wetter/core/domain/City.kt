@@ -4,4 +4,8 @@ data class City(
     val id: Int,
     val name: String,
     val state: String
-)
+) {
+
+    fun getDisplayText() = name.plus(" - ").plus(state)
+
+}

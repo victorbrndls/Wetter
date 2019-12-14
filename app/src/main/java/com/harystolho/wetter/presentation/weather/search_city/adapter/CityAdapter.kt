@@ -32,9 +32,9 @@ class CityAdapter(context: Context, private val cities: MutableList<City>) :
         )
 
         getItem(position)?.let { city ->
-            itemView.city_name.text = city.name.plus(" - ").plus(city.state)
+            itemView.city_name.text = city.getDisplayText()
         }
-        
+
         return itemView
     }
 

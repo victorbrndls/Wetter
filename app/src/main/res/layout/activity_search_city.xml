@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/save_city_bg">
 
-        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        <com.harystolho.wetter.presentation.weather.search_city.auto_complete.CityAutoCompleteTextView
             android:id="@+id/search_city_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
