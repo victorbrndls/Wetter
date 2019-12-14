@@ -6,7 +6,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-class WeatherBitForecastRepositoryImpl(private val weatherBitApi: WeatherBitApi) :
+class WeatherBitWeatherForecastRepositoryImpl(private val weatherBitApi: WeatherBitApi) :
     WeatherForecastRepository {
 
     override fun getForecastForCity(cityId: Int, days: Int): Single<Unit> {
@@ -15,10 +15,7 @@ class WeatherBitForecastRepositoryImpl(private val weatherBitApi: WeatherBitApi)
 
     interface WeatherBitApi {
 
-        @GET(
-            "https://api.weatherbit.io/v2.0/forecast/daily?city_id={id}&days={days}" +
-                    "&lang=pt&key={key}"
-        )
+        @GET("/forecast/daily?city_id={id}&days={days}&lang=pt&key={key}")
         fun getForecastForCity(
             @Path("id") cityId: Int,
             @Path("days") days: Int,

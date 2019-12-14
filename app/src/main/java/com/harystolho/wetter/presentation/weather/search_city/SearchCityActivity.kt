@@ -50,7 +50,7 @@ class SearchCityActivity : BaseActivity() {
         }
 
         search_city_input.onCitySelected = { city ->
-            viewModel.selectCityAction(city)
+            viewModel.selectCityAction(city) // TODO: check internet connection
         }
 
         search_city_input.addTextChangedListener { text ->
