@@ -1,11 +1,9 @@
 package com.harystolho.wetter.presentation.weather.search_city
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.harystolho.wetter.R
-import com.harystolho.wetter.core.domain.City
 import com.harystolho.wetter.databinding.ActivitySearchCityBinding
 import com.harystolho.wetter.presentation.weather.search_city.adapter.CityAdapter
 import com.harystolho.wetter.util.BaseActivity
@@ -41,8 +39,7 @@ class SearchCityActivity : BaseActivity() {
     }
 
     private fun setupAdapter() {
-        cityAdapter =
-            CityAdapter(this, android.R.layout.simple_spinner_dropdown_item, mutableListOf())
+        cityAdapter = CityAdapter(this, mutableListOf())
         search_city_input.setAdapter(cityAdapter)
     }
 
