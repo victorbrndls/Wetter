@@ -1,6 +1,11 @@
 package com.harystolho.wetter.presentation.weather.search_city
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.AdapterView
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.harystolho.wetter.R
@@ -27,14 +32,42 @@ class SearchCityActivity : BaseActivity() {
         }
 
         setupAdapter()
+        initViews()
         observeViewModel()
 
         viewModel.loadCities()
     }
 
+    private fun initViews() {
+        search_city_input.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                viewModel.navigateToForecastView()
+                return@setOnEditorActionListener true
+            }
+
+            false
+        }
+
+        search_city_input.onCitySelected = { city ->
+            viewModel.selectCityAction(city)
+        }
+
+        search_city_input.addTextChangedListener { text ->
+            if (text.isNullOrEmpty()) viewModel.selectCityAction(null)
+        }
+    }
+
     private fun observeViewModel() {
         viewModel.cities.observe(this, Observer { cities ->
             cityAdapter.setItems(cities)
+        })
+
+        viewModel.isNavigateToForecastView.observe(this, Observer {
+            it?.getContentIfNotHandled()?.let { navigate ->
+                if (navigate) {
+                    
+                }
+            }
         })
     }
 

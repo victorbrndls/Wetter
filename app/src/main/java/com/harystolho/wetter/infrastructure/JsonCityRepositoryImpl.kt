@@ -1,4 +1,4 @@
-package com.harystolho.wetter.infrastructure.adapter
+package com.harystolho.wetter.infrastructure
 
 import android.content.Context
 import android.util.Log
@@ -23,7 +23,7 @@ class JsonCityRepositoryImpl(private val context: Context) : CityRepository {
                     it, TypeToken.getParameterized(ArrayList::class.java, CityData::class.java).type
                 )
 
-                cities.map(CityData::toEntity)
+                cities.map(CityData::toEntity).also { Log.d(TAG, "Loaded ${it.size} cities") }
             } catch (e: JsonSyntaxException) {
                 throw ResourceReadException("Error converting json file to CityData list", e)
             }
@@ -55,20 +55,20 @@ class JsonCityRepositoryImpl(private val context: Context) : CityRepository {
         }
     }
 
-    inner class CityData(
-        val id: Int,
-        val name: String,
-        val state: String
-    ) {
-        fun toEntity() = City(
-            id,
-            name,
-            state
-        )
-    }
-
     companion object {
         private const val TAG = "JsonCityRepositoryImpl"
     }
 
+}
+
+private class CityData(
+    val id: Int,
+    val name: String,
+    val state: String
+) {
+    fun toEntity() = City(
+        id,
+        name,
+        state
+    )
 }

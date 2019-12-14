@@ -9,15 +9,15 @@ import com.harystolho.wetter.util.DefaultSingleObserver
 import com.harystolho.wetter.util.Event
 import com.harystolho.wetter.util.extension.mutableLiveData
 import com.harystolho.wetter.util.extension.observe
-import io.reactivex.SingleObserver
-import io.reactivex.disposables.Disposable
 
 class SearchCityViewModel(private val cityRepository: CityRepository) : ViewModel() {
 
     private val _cities = MutableLiveData<List<City>>()
-
     val cities = Transformations.map(_cities) { it }
 
+    private var selectedCity: City? = null
+
+    val isNavigateToForecastView = mutableLiveData(Event(false))
     val isError = mutableLiveData(Event(false))
 
     fun loadCities() {
@@ -32,5 +32,14 @@ class SearchCityViewModel(private val cityRepository: CityRepository) : ViewMode
         })
     }
 
+    fun selectCityAction(city: City?) {
+        selectedCity = city
+    }
+
+    fun navigateToForecastView() {
+        selectedCity ?: return
+
+        isNavigateToForecastView.value = Event(true)
+    }
 
 }
