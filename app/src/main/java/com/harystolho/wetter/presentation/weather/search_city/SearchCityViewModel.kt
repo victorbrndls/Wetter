@@ -17,7 +17,7 @@ class SearchCityViewModel(private val cityRepository: CityRepository) : ViewMode
 
     private var selectedCity: City? = null
 
-    val isNavigateToForecastView = mutableLiveData(Event(false))
+    val isNavigateToForecastView = mutableLiveData(Event<Int?>(null))
     val isError = mutableLiveData(Event(false))
 
     fun loadCities() {
@@ -39,7 +39,7 @@ class SearchCityViewModel(private val cityRepository: CityRepository) : ViewMode
     fun navigateToForecastView() {
         selectedCity ?: return
 
-        isNavigateToForecastView.value = Event(true)
+        isNavigateToForecastView.value = Event(selectedCity!!.id)
     }
 
 }

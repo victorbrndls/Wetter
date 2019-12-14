@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.harystolho.wetter.R
 import com.harystolho.wetter.databinding.ActivitySearchCityBinding
+import com.harystolho.wetter.presentation.weather.forecast.ForecastActivity
 import com.harystolho.wetter.presentation.weather.search_city.adapter.CityAdapter
 import com.harystolho.wetter.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_search_city.*
@@ -63,10 +64,8 @@ class SearchCityActivity : BaseActivity() {
         })
 
         viewModel.isNavigateToForecastView.observe(this, Observer {
-            it?.getContentIfNotHandled()?.let { navigate ->
-                if (navigate) {
-                    
-                }
+            it?.getContentIfNotHandled()?.let { cityId ->
+                startActivity(ForecastActivity.intent(this, cityId))
             }
         })
     }
