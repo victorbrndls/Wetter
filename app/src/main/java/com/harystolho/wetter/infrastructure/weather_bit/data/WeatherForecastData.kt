@@ -16,6 +16,7 @@ data class WeatherForecastDetails(
     var app_max_temp: Double,
     var app_min_temp: Double,
     var pop: Double,
+    var precip: Double,
     var rh: Double,
     var clouds: Double
 )

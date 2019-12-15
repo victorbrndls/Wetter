@@ -68,7 +68,7 @@
                 tools:text="17° - 24°" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -100,7 +100,7 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView3"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView9"
                 tools:text="14 m/s - Sul" />
 
             <TextView
@@ -122,6 +122,23 @@
                 tools:text="31%" />
 
             <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="8dp"
+                android:drawableTint="#FFFFFF"
+                android:fontFamily="@font/quicksand"
+                android:gravity="center_vertical"
+                android:text="@{viewModel.weather.precipitationVolume}"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                tools:text="4mm" />
+
+
+            <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,7 +150,7 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView5"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
                 android:id="@+id/textView10"

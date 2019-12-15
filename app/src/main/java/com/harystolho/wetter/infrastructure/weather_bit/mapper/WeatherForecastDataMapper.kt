@@ -22,6 +22,7 @@ class WeatherForecastDataMapper : Mapper<WeatherForecastData, List<WeatherForeca
                 forecast.wind_cdir_full,
                 obj.timezone,
                 forecast.pop,
+                forecast.precip,
                 forecast.rh,
                 forecast.clouds
             )

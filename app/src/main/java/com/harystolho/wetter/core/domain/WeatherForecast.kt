@@ -22,12 +22,13 @@ data class WeatherForecast(
     // IANA timezone format
     val timezone: String,
 
-    // a value between 0 and 1
+    // a value between 0 and 100
     val precipitation: Double,
+    val precipitationVolume: Double,
 
-    // a value between 0 and 1
+    // a value between 0 and 100
     val relativeHumidity: Double,
 
-    // a value between 0 and 1
+    // a value between 0 and 100
     val cloudsPercentage: Double
 )

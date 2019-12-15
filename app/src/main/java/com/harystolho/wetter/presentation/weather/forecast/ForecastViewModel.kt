@@ -54,6 +54,7 @@ class WeatherForecastModel {
     var wind: String = ""
     var timezone: String = ""
     var precipitation: String = ""
+    var precipitationVolume: String = ""
     var humidity: String = ""
     var clouds: String = ""
     var weather: Weather = Weather.HOT
@@ -75,6 +76,7 @@ class WeatherForecastModel {
                     forecast.windSpeed.toInt().toString().plus(" m/s ").plus(forecast.windDirection)
                 timezone = forecast.timezone.replace("_", " ")
                 precipitation = forecast.precipitation.toInt().toString().plus("%")
+                precipitationVolume = forecast.precipitationVolume.toInt().toString().plus("mm")
                 humidity = forecast.relativeHumidity.toInt().toString().plus("%")
                 clouds = forecast.cloudsPercentage.toInt().toString().plus("%")
 
