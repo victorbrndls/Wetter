@@ -21,7 +21,7 @@ class DefaultRetrofitClient {
         .build()
 
     companion object {
-        private const val WEATHER_BIT_URL = "https://api.weatherbit.io/v2.0/"
+        private const val WEATHER_BIT_URL = "https://api.weatherbit.io/"
     }
 
 }

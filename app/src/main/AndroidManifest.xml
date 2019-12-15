@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.harystolho.wetter">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".WetterApplication"
         android:allowBackup="true"

@@ -28,5 +28,10 @@ object DateUtils {
         }
     }
 
+    fun calendarToBrazilianDateFormat(calendar: Calendar): String {
+        return calendar.let {
+            "${it[Calendar.DAY_OF_MONTH]}/${it[Calendar.MONTH] + 1}/${it[Calendar.YEAR]}"
+        }
+    }
 
 }

@@ -11,6 +11,7 @@ import com.harystolho.wetter.util.Mapper
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 class WeatherBitWeatherForecastRepositoryImpl(private val weatherBitApi: WeatherBitApi) :
     WeatherForecastRepository {
@@ -18,22 +19,23 @@ class WeatherBitWeatherForecastRepositoryImpl(private val weatherBitApi: Weather
     private val weatherForecastDataMapper = WeatherForecastDataMapper()
 
     override fun getForecastForCity(cityId: Int, days: Int): Single<List<WeatherForecast>> {
-        Log.d(TAG, "Fetching $days days forecasts for $cityId")
+        Log.d(TAG, "Fetching $days days forecast for $cityId")
 
         return weatherBitApi.getForecastForCity(
             cityId, days, key = BuildConfig.WEATHER_BIT_API_KEY
         ).map { weatherForecastDataMapper.map(it) }.doOnError {
-            throw ResourceReadException("Error getting forecast", it)
+            Log.e(TAG, "Error getting forecast", it)
+            throw ResourceReadException()
         }
     }
 
     interface WeatherBitApi {
 
-        @GET("/forecast/daily?city_id={id}&days={days}&lang=pt&key={key}")
+        @GET("/v2.0/forecast/daily?lang=pt")
         fun getForecastForCity(
-            @Path("id") cityId: Int,
-            @Path("days") days: Int,
-            @Path("key") key: String
+            @Query("city_id") cityId: Int,
+            @Query("days") days: Int,
+            @Query("key") key: String
         ): Single<WeatherForecastData>
 
     }
