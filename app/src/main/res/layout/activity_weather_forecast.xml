@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.harystolho.wetter.presentation.weather.forecast.ForecastViewModel" />
@@ -32,7 +34,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/quicksand"
             android:text="@{viewModel.weather.cityName}"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +43,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/forecast_details_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
@@ -119,5 +122,17 @@
                 tools:text="31%" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/layout_progress"
+            layout="@layout/layout_loading"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/forecast_details_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

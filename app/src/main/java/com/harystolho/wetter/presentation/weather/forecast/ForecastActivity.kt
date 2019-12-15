@@ -5,9 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.harystolho.wetter.R
 import com.harystolho.wetter.databinding.ActivityWeatherForecastBinding
 import com.harystolho.wetter.util.BaseActivity
+import kotlinx.android.synthetic.main.activity_weather_forecast.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ForecastActivity : BaseActivity() {
@@ -30,7 +32,25 @@ class ForecastActivity : BaseActivity() {
             lifecycleOwner = this@ForecastActivity
         }
 
+        observeViewModel()
+
         viewModel.loadWeatherForecast(cityId)
+    }
+
+    private fun observeViewModel() {
+        viewModel.weather.observe(this, Observer {
+            changeBackgroundColor(it.weather)
+        })
+    }
+
+    private fun changeBackgroundColor(weather: WeatherForecastModel.Weather) {
+        forecast_details_container.background = getDrawable(
+            when (weather) {
+                WeatherForecastModel.Weather.HOT -> R.drawable.forecast_weather_hot
+                WeatherForecastModel.Weather.COLD -> R.drawable.forecast_weather_cold
+                WeatherForecastModel.Weather.RAINY -> R.drawable.forecast_weather_rain
+            }
+        )
     }
 
     companion object {

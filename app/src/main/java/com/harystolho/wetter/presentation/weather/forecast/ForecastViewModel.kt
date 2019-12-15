@@ -57,6 +57,11 @@ class WeatherForecastModel {
     var precipitation: String = ""
     var humidity: String = ""
     var clouds: String = ""
+    var weather: Weather = Weather.HOT
+
+    enum class Weather {
+        HOT, COLD, RAINY
+    }
 
     companion object {
         fun fromEntity(weatherForecast: WeatherForecast): WeatherForecastModel {
@@ -68,12 +73,22 @@ class WeatherForecastModel {
                         .plus("°")
                 appMaxTemp = weatherForecast.appMaxTemp.toString().plus("°")
                 appMinTem = weatherForecast.appMinTem.toString().plus("°")
-                wind = weatherForecast.windSpeed.toInt().toString().plus(" m/s \t ")
+                wind = weatherForecast.windSpeed.toInt().toString().plus(" m/s ")
                     .plus(weatherForecast.windDirection)
                 timezone = weatherForecast.timezone.replace("-", " ")
                 precipitation = weatherForecast.precipitation.toInt().toString().plus("%")
                 humidity = weatherForecast.relativeHumidity.toInt().toString().plus("%")
                 clouds = weatherForecast.cloudsPercentage.toInt().toString().plus("%")
+
+                weather = calculateWeather(weatherForecast)
+            }
+        }
+
+        private fun calculateWeather(weatherForecast: WeatherForecast): Weather {
+            return when {
+                weatherForecast.precipitation > 0.8 -> Weather.RAINY
+                weatherForecast.maxTemp > 20 -> Weather.HOT
+                else -> Weather.COLD
             }
         }
     }
