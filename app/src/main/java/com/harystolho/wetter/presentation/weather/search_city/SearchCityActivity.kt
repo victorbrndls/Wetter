@@ -13,6 +13,8 @@ import com.harystolho.wetter.databinding.ActivitySearchCityBinding
 import com.harystolho.wetter.presentation.weather.forecast.ForecastActivity
 import com.harystolho.wetter.presentation.weather.search_city.adapter.CityAdapter
 import com.harystolho.wetter.util.BaseActivity
+import com.harystolho.wetter.util.extension.editableOf
+import com.harystolho.wetter.util.extension.setOnSafeClickListener
 import kotlinx.android.synthetic.main.activity_search_city.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -54,7 +56,16 @@ class SearchCityActivity : BaseActivity() {
         }
 
         search_city_input.addTextChangedListener { text ->
-            if (text.isNullOrEmpty()) viewModel.selectCityAction(null)
+            if (text.isNullOrEmpty()) {
+                viewModel.selectCityAction(null)
+                search_city_input_clear.visibility = View.GONE
+            } else {
+                search_city_input_clear.visibility = View.VISIBLE
+            }
+        }
+
+        search_city_input_clear.setOnSafeClickListener {
+            search_city_input.text = editableOf("")
         }
     }
 
