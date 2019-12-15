@@ -3,4 +3,8 @@
 
     <string name="type_city_name">Digite o nome da cidade…</string>
 
+    <string name="forecast_for">Previsão para </string>
+    <string name="forecast_humidity">Umidade</string>
+    <string name="forecast_feels_like">Sensação termica</string>
+
 </resources>

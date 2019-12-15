@@ -29,6 +29,8 @@ class ForecastActivity : BaseActivity() {
             viewModel = this@ForecastActivity.viewModel
             lifecycleOwner = this@ForecastActivity
         }
+
+        viewModel.loadWeatherForecast(cityId)
     }
 
     companion object {
@@ -37,7 +39,7 @@ class ForecastActivity : BaseActivity() {
         private const val CITY_ID_ARG = "CITY_ID"
 
         fun intent(context: Context, cityId: Int): Intent {
-            return Intent(context, this::class.java).apply {
+            return Intent(context, ForecastActivity::class.java).apply {
                 putExtra(CITY_ID_ARG, cityId)
             }
         }
