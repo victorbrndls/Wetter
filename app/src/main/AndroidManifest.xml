@@ -14,14 +14,18 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".presentation.weather.search_city.SearchCityActivity">
+        <activity
+            android:name=".presentation.weather.search_city.SearchCityActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- TODO: handle screen orientation -->
+        </activity>
 
-        <activity android:name=".presentation.weather.forecast.ForecastActivity" />
+        <activity
+            android:name=".presentation.weather.forecast.ForecastActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

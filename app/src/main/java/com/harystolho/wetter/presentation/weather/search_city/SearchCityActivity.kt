@@ -1,10 +1,9 @@
 package com.harystolho.wetter.presentation.weather.search_city
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.AdapterView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -12,13 +11,12 @@ import com.harystolho.wetter.R
 import com.harystolho.wetter.databinding.ActivitySearchCityBinding
 import com.harystolho.wetter.presentation.weather.forecast.ForecastActivity
 import com.harystolho.wetter.presentation.weather.search_city.adapter.CityAdapter
-import com.harystolho.wetter.util.BaseActivity
 import com.harystolho.wetter.util.extension.editableOf
 import com.harystolho.wetter.util.extension.setOnSafeClickListener
 import kotlinx.android.synthetic.main.activity_search_city.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SearchCityActivity : BaseActivity() {
+class SearchCityActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<SearchCityViewModel>()
 

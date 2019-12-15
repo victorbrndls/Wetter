@@ -50,8 +50,7 @@ class WeatherForecastModel {
     var cityName: String = ""
     var forecastDate: String = ""
     var minMaxTemp: String = ""
-    var appMaxTemp: String = ""
-    var appMinTem: String = ""
+    var appMinMaxTemp: String = ""
     var wind: String = ""
     var timezone: String = ""
     var precipitation: String = ""
@@ -64,29 +63,28 @@ class WeatherForecastModel {
     }
 
     companion object {
-        fun fromEntity(weatherForecast: WeatherForecast): WeatherForecastModel {
+        fun fromEntity(forecast: WeatherForecast): WeatherForecastModel {
             return WeatherForecastModel().apply {
-                cityName = weatherForecast.cityName
-                forecastDate = DateUtils.calendarToBrazilianDateFormat(weatherForecast.forecastDate)
+                cityName = forecast.cityName
+                forecastDate = DateUtils.calendarToBrazilianDateFormat(forecast.forecastDate)
                 minMaxTemp =
-                    weatherForecast.minTemp.toString().plus("° - ").plus(weatherForecast.maxTemp)
-                        .plus("°")
-                appMaxTemp = weatherForecast.appMaxTemp.toString().plus("°")
-                appMinTem = weatherForecast.appMinTem.toString().plus("°")
-                wind = weatherForecast.windSpeed.toInt().toString().plus(" m/s ")
-                    .plus(weatherForecast.windDirection)
-                timezone = weatherForecast.timezone.replace("-", " ")
-                precipitation = weatherForecast.precipitation.toInt().toString().plus("%")
-                humidity = weatherForecast.relativeHumidity.toInt().toString().plus("%")
-                clouds = weatherForecast.cloudsPercentage.toInt().toString().plus("%")
+                    forecast.minTemp.toString().plus("° - ").plus(forecast.maxTemp).plus("°")
+                appMinMaxTemp =
+                    forecast.appMinTem.toString().plus("° - ").plus(forecast.appMaxTemp).plus("°")
+                wind =
+                    forecast.windSpeed.toInt().toString().plus(" m/s ").plus(forecast.windDirection)
+                timezone = forecast.timezone.replace("_", " ")
+                precipitation = forecast.precipitation.toInt().toString().plus("%")
+                humidity = forecast.relativeHumidity.toInt().toString().plus("%")
+                clouds = forecast.cloudsPercentage.toInt().toString().plus("%")
 
-                weather = calculateWeather(weatherForecast)
+                weather = calculateWeather(forecast)
             }
         }
 
         private fun calculateWeather(weatherForecast: WeatherForecast): Weather {
             return when {
-                weatherForecast.precipitation > 0.8 -> Weather.RAINY
+                weatherForecast.precipitation > 80 -> Weather.RAINY
                 weatherForecast.maxTemp > 20 -> Weather.HOT
                 else -> Weather.COLD
             }

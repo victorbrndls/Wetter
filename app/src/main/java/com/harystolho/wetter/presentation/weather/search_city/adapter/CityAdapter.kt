@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Filter
 import com.harystolho.wetter.R
 import com.harystolho.wetter.core.domain.City
+import com.harystolho.wetter.util.StringUtils
 import kotlinx.android.synthetic.main.city_spinner_dropdown_item.view.*
 
 class CityAdapter(context: Context, private val cities: MutableList<City>) :
@@ -49,7 +50,8 @@ class CityAdapter(context: Context, private val cities: MutableList<City>) :
 
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val filteredItems = cities.filter {
-                    it.name.contains(constraint.toString(), true) // TODO: ignore accents
+                    val filter = StringUtils.removeAccents(constraint.toString())
+                    it.searchName.contains(filter, true)
                 }
 
                 return FilterResults().apply {
