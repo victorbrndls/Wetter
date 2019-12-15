@@ -5,12 +5,16 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.harystolho.wetter.core.domain.City
 import com.harystolho.wetter.core.repository.CityRepository
+import com.harystolho.wetter.core.service.NetworkService
 import com.harystolho.wetter.util.DefaultSingleObserver
 import com.harystolho.wetter.util.Event
 import com.harystolho.wetter.util.extension.mutableLiveData
 import com.harystolho.wetter.util.extension.observe
 
-class SearchCityViewModel(private val cityRepository: CityRepository) : ViewModel() {
+class SearchCityViewModel(
+    private val cityRepository: CityRepository,
+    private val networkService: NetworkService
+) : ViewModel() {
 
     private val _cities = MutableLiveData<List<City>>()
     val cities = Transformations.map(_cities) { it }
@@ -18,7 +22,7 @@ class SearchCityViewModel(private val cityRepository: CityRepository) : ViewMode
     private var selectedCity: City? = null
 
     val isNavigateToForecastView = mutableLiveData(Event<Int?>(null))
-    val isError = mutableLiveData(Event(false))
+    val isError = mutableLiveData(Event<SearchCityError?>(null))
 
     fun loadCities() {
         cityRepository.getCities().observe(object : DefaultSingleObserver<List<City>>() {
@@ -27,7 +31,7 @@ class SearchCityViewModel(private val cityRepository: CityRepository) : ViewMode
             }
 
             override fun onError(e: Throwable) {
-                isError.value = Event(true)
+                isError.value = Event(SearchCityError.UNKNONWN)
             }
         })
     }
@@ -39,7 +43,16 @@ class SearchCityViewModel(private val cityRepository: CityRepository) : ViewMode
     fun navigateToForecastView() {
         selectedCity ?: return
 
+        if (!networkService.hasInternetAccess()) {
+            isError.value = Event(SearchCityError.NO_INTERNET_CONNECTION)
+            return
+        }
+
         isNavigateToForecastView.value = Event(selectedCity!!.id)
     }
 
+}
+
+enum class SearchCityError {
+    UNKNONWN, NO_INTERNET_CONNECTION
 }

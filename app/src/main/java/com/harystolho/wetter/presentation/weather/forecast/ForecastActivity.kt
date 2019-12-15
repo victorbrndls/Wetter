@@ -9,10 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.harystolho.wetter.R
 import com.harystolho.wetter.databinding.ActivityWeatherForecastBinding
+import com.harystolho.wetter.util.BaseActivity
+import com.harystolho.wetter.util.UnknownError
 import kotlinx.android.synthetic.main.activity_weather_forecast.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ForecastActivity : AppCompatActivity() {
+class ForecastActivity : BaseActivity() {
 
     private val viewModel by viewModel<ForecastViewModel>()
 
@@ -40,6 +42,12 @@ class ForecastActivity : AppCompatActivity() {
     private fun observeViewModel() {
         viewModel.weather.observe(this, Observer {
             changeBackgroundColor(it.weather)
+        })
+
+        viewModel.isError.observe(this, Observer {
+            it?.getContentIfNotHandled()?.let { error ->
+                if (error) showMessage(UnknownError())
+            }
         })
     }
 

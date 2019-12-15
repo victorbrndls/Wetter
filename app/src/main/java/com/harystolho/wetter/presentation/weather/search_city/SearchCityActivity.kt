@@ -11,12 +11,15 @@ import com.harystolho.wetter.R
 import com.harystolho.wetter.databinding.ActivitySearchCityBinding
 import com.harystolho.wetter.presentation.weather.forecast.ForecastActivity
 import com.harystolho.wetter.presentation.weather.search_city.adapter.CityAdapter
+import com.harystolho.wetter.util.BaseActivity
+import com.harystolho.wetter.util.NoInternetError
+import com.harystolho.wetter.util.UnknownError
 import com.harystolho.wetter.util.extension.editableOf
 import com.harystolho.wetter.util.extension.setOnSafeClickListener
 import kotlinx.android.synthetic.main.activity_search_city.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SearchCityActivity : AppCompatActivity() {
+class SearchCityActivity : BaseActivity() {
 
     private val viewModel by viewModel<SearchCityViewModel>()
 
@@ -50,7 +53,7 @@ class SearchCityActivity : AppCompatActivity() {
         }
 
         search_city_input.onCitySelected = { city ->
-            viewModel.selectCityAction(city) // TODO: check internet connection
+            viewModel.selectCityAction(city)
         }
 
         search_city_input.addTextChangedListener { text ->
@@ -75,6 +78,15 @@ class SearchCityActivity : AppCompatActivity() {
         viewModel.isNavigateToForecastView.observe(this, Observer {
             it?.getContentIfNotHandled()?.let { cityId ->
                 startActivity(ForecastActivity.intent(this, cityId))
+            }
+        })
+
+        viewModel.isError.observe(this, Observer {
+            it?.getContentIfNotHandled()?.let { error ->
+                when (error) {
+                    SearchCityError.NO_INTERNET_CONNECTION -> showMessage(NoInternetError())
+                    SearchCityError.UNKNONWN -> showMessage(UnknownError())
+                }
             }
         })
     }
