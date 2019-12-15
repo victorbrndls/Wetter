@@ -4,7 +4,7 @@
     <string name="error_message_unknown">Ops! Ocorreu um erro ao executar sua ação</string>
     <string name="error_message_no_internet">Para continuar você deve estar conectado à Internet</string>
 
-    <string name="type_city_name">Digite o nome da cidade…</string>
+    <string name="type_city_name">Digite o nome da cidade</string>
 
     <string name="forecast_for">Previsão para </string>
     <string name="forecast_feels_like">Sensação termica</string>

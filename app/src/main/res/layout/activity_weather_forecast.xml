@@ -25,7 +25,8 @@
             android:text='@{@string/forecast_for + " " + viewModel.weather.forecastDate}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Previsao para 16/12/2019" />
 
         <TextView
             android:id="@+id/textView"

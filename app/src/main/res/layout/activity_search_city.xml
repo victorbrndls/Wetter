@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="48dp"
             android:alpha="0.4"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -90,7 +90,7 @@
 
             <com.harystolho.wetter.presentation.weather.search_city.auto_complete.CityAutoCompleteTextView
                 android:id="@+id/search_city_input"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
@@ -111,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:tint="#E8FFFFFF"
                 android:visibility="gone"
                 app:srcCompat="@drawable/ic_close_black"
