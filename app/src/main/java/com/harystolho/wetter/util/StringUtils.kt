@@ -4,7 +4,7 @@ import java.text.Normalizer
 
 object StringUtils {
 
-    val accentsRegex = "[^\\p{ASCII}]".toRegex()
+    private val accentsRegex = "[^\\p{ASCII}]".toRegex()
 
     fun removeAccents(str: String): String {
         val strNormalizer = Normalizer.normalize(str, Normalizer.Form.NFD)

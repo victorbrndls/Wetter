@@ -1,4 +1,4 @@
-package com.harystolho.wetter.util
+package com.harystolho.wetter.util.presentation
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity

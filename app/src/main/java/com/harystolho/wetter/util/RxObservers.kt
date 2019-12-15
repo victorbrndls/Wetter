@@ -15,15 +15,3 @@ open class DefaultSingleObserver<T> : SingleObserver<T> {
     }
 
 }
-
-open class DefaultCompletableObserver : CompletableObserver {
-    override fun onComplete() {
-    }
-
-    override fun onSubscribe(d: Disposable) {
-    }
-
-    override fun onError(e: Throwable) {
-    }
-
-}

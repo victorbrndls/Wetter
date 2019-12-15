@@ -4,13 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.harystolho.wetter.R
 import com.harystolho.wetter.databinding.ActivityWeatherForecastBinding
-import com.harystolho.wetter.util.BaseActivity
-import com.harystolho.wetter.util.UnknownError
+import com.harystolho.wetter.util.presentation.BaseActivity
+import com.harystolho.wetter.util.presentation.UnknownError
 import kotlinx.android.synthetic.main.activity_weather_forecast.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

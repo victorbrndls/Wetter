@@ -3,7 +3,6 @@ package com.harystolho.wetter.presentation.weather.search_city
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -11,9 +10,9 @@ import com.harystolho.wetter.R
 import com.harystolho.wetter.databinding.ActivitySearchCityBinding
 import com.harystolho.wetter.presentation.weather.forecast.ForecastActivity
 import com.harystolho.wetter.presentation.weather.search_city.adapter.CityAdapter
-import com.harystolho.wetter.util.BaseActivity
-import com.harystolho.wetter.util.NoInternetError
-import com.harystolho.wetter.util.UnknownError
+import com.harystolho.wetter.util.presentation.BaseActivity
+import com.harystolho.wetter.util.presentation.NoInternetError
+import com.harystolho.wetter.util.presentation.UnknownError
 import com.harystolho.wetter.util.extension.editableOf
 import com.harystolho.wetter.util.extension.setOnSafeClickListener
 import kotlinx.android.synthetic.main.activity_search_city.*
