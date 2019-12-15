@@ -3,7 +3,6 @@ package com.harystolho.wetter.core.domain
 import java.util.*
 
 data class WeatherForecast(
-    val cityId: Int,
     val cityName: String,
 
     val forecastDate: Calendar,
@@ -20,6 +19,7 @@ data class WeatherForecast(
     val windSpeed: Double,
     val windDirection: String,
 
+    // IANA timezone format
     val timezone: String,
 
     // a value between 0 and 1

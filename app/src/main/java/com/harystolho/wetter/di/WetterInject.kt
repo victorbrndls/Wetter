@@ -4,7 +4,8 @@ import com.harystolho.wetter.core.repository.CityRepository
 import com.harystolho.wetter.core.repository.WeatherForecastRepository
 import com.harystolho.wetter.infrastructure.DefaultRetrofitClient
 import com.harystolho.wetter.infrastructure.JsonCityRepositoryImpl
-import com.harystolho.wetter.infrastructure.WeatherBitWeatherForecastRepositoryImpl
+import com.harystolho.wetter.infrastructure.weather_bit.WeatherBitWeatherForecastRepositoryImpl
+import com.harystolho.wetter.presentation.weather.forecast.ForecastViewModel
 import com.harystolho.wetter.presentation.weather.search_city.SearchCityViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -21,6 +22,6 @@ val wetterInject = module {
         )
     }
 
-
     viewModel { SearchCityViewModel(get()) }
+    viewModel { ForecastViewModel(get()) }
 }
